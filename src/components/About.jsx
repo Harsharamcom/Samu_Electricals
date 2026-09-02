@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, Check, Layers, Sparkles } from 'lucide-react';
-import { businessInfo } from '../data/businessInfo';
 
 export const About = ({ onLearnMoreClick }) => {
   return (
@@ -9,7 +8,7 @@ export const About = ({ onLearnMoreClick }) => {
         <div className="about-grid">
           <div className="about-image-wrapper">
             <img
-              src="/images/switches-accessories.jpg"
+              src="./images/switches-accessories.jpg"
               alt="Samu Electricals Modular Switches and Product Showcase"
               className="about-image"
             />

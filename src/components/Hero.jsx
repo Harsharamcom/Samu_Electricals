@@ -52,7 +52,7 @@ export const Hero = ({ onExploreClick, onContactClick }) => {
           <div>
             <div className="hero-visual-card">
               <img
-                src="/images/hero-showroom.jpg"
+                src="./images/hero-showroom.jpg"
                 alt="Samu Electricals Showroom Display of Modular Switches, Wires, LED Panels and Circuit Breakers"
                 className="hero-image"
               />
