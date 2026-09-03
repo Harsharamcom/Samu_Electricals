@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, MapPin, Phone, Mail, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageSquare } from 'lucide-react';
 import { businessInfo } from '../data/businessInfo';
 
 export const Footer = ({ onOpenLegal }) => {
@@ -17,11 +17,23 @@ export const Footer = ({ onOpenLegal }) => {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
+          {/* Column 1: Brand Logo & Description */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '6px', backgroundColor: 'var(--color-primary)', border: '1px solid var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#D99A2B' }}>
-                <Zap size={22} fill="#D99A2B" />
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+              <img
+                src="./samu-logo.png"
+                alt="Samu Electricals Official Logo"
+                style={{
+                  height: '56px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0px 2px 6px rgba(0,0,0,0.3))'
+                }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "./samu-logo.svg";
+                }}
+              />
               <span className="footer-brand-title">{businessInfo.name}</span>
             </div>
             <p className="footer-desc">
@@ -32,6 +44,7 @@ export const Footer = ({ onOpenLegal }) => {
             </div>
           </div>
 
+          {/* Column 2: Quick Links */}
           <div>
             <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-links">
@@ -44,6 +57,7 @@ export const Footer = ({ onOpenLegal }) => {
             </ul>
           </div>
 
+          {/* Column 3: Products Spectrum */}
           <div>
             <h4 className="footer-col-title">Products</h4>
             <ul className="footer-links">
@@ -55,6 +69,7 @@ export const Footer = ({ onOpenLegal }) => {
             </ul>
           </div>
 
+          {/* Column 4: Contact Info */}
           <div>
             <h4 className="footer-col-title">Contact</h4>
             <ul className="footer-links">
@@ -78,6 +93,7 @@ export const Footer = ({ onOpenLegal }) => {
           </div>
         </div>
 
+        {/* Footer Bottom */}
         <div className="footer-bottom">
           <div>
             © {currentYear} Samu Electricals. All Rights Reserved.

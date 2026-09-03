@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    
+    <!-- Gradients -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A73E8"/>
+      <stop offset="100%" stop-color="#0D47A1"/>
+    </linearGradient>
+
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E53935"/>
+      <stop offset="50%" stop-color="#EF5350"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <!-- Outer Thick White Border for 'S' -->
+    <path d="M 200 20 
+             C 240 20, 310 40, 320 80 
+             C 330 120, 270 170, 200 200 
+             C 140 226, 110 250, 110 290 
+             C 110 340, 160 380, 230 380 
+             C 280 380, 320 350, 340 320
+             L 340 370
+             C 310 410, 250 435, 190 435
+             C 100 435, 40 370, 40 290
+             C 40 220, 100 170, 180 140
+             C 240 118, 260 95, 260 75
+             C 260 55, 230 42, 190 42
+             C 140 42, 90 70, 70 100
+             L 70 50
+             C 100 30, 150 20, 200 20 Z" 
+          fill="#FFFFFF" stroke="#0D47A1" stroke-width="4"/>
+
+    <!-- Inner Blue 'S' Shape -->
+    <path d="M 195 32 
+             C 232 32, 298 50, 308 86 
+             C 318 122, 260 166, 195 194 
+             C 135 220, 120 246, 120 284 
+             C 120 330, 165 368, 228 368 
+             C 272 368, 308 340, 325 315
+             L 325 355
+             C 298 392, 242 418, 185 418 
+             C 102 418, 55 358, 55 284 
+             C 55 222, 110 176, 184 148 
+             C 238 128, 248 104, 248 82 
+             C 248 64, 222 52, 188 52 
+             C 142 52, 98 76, 82 102
+             L 82 62
+             C 108 42, 152 32, 195 32 Z" 
+          fill="url(#blueGrad)"/>
+
+    <!-- Red Ribbon Banner at Bottom -->
+    <!-- Left Ribbon Fold -->
+    <path d="M 40 420 L 80 380 L 80 430 Z" fill="#9A0007"/>
+    <path d="M 20 400 L 80 380 L 80 430 L 20 440 L 40 420 Z" fill="url(#redGrad)"/>
+
+    <!-- Right Ribbon Fold -->
+    <path d="M 360 420 L 320 380 L 320 430 Z" fill="#9A0007"/>
+    <path d="M 380 400 L 320 380 L 320 430 L 380 440 L 360 420 Z" fill="url(#redGrad)"/>
+
+    <!-- Main Curved Central Banner -->
+    <path d="M 70 385 
+             Q 200 425 330 385 
+             L 340 445 
+             Q 200 485 60 445 Z" 
+          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="3"/>
+
+    <!-- White SAMU Text inside Banner -->
+    <text x="200" y="432" 
+          font-family="'Outfit', 'Arial Black', sans-serif" 
+          font-weight="900" 
+          font-size="44" 
+          fill="#FFFFFF" 
+          text-anchor="middle" 
+          letter-spacing="4">SAMU</text>
+  </g>
+</svg>

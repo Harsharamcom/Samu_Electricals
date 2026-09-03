@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Zap, Menu, X, ShoppingBag, ChevronRight } from 'lucide-react';
+import { Menu, X, ShoppingBag, ChevronRight } from 'lucide-react';
 import { businessInfo } from '../data/businessInfo';
 
 export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) => {
@@ -40,16 +40,30 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
     <>
       <header className={`navbar-sticky ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-inner">
+          {/* Logo with User Uploaded Official Samu Emblem */}
           <a href="#home" className="brand-logo" onClick={(e) => handleNavClick(e, '#home')}>
-            <div className="brand-logo-icon">
-              <Zap size={24} fill="#D99A2B" />
-            </div>
+            <img
+              src="./samu-logo.png"
+              alt="Samu Electricals Official Logo"
+              style={{
+                height: '52px',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.15))'
+              }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "./samu-logo.svg";
+              }}
+            />
             <div>
               <div className="brand-title">{businessInfo.name}</div>
               <div className="brand-subtitle">Multi-Brand Electrical Supplier</div>
             </div>
           </a>
 
+          {/* Desktop Nav */}
           <ul className="desktop-nav">
             {navLinks.map((link) => {
               const isActive = activeSection === link.name.toLowerCase();
@@ -67,6 +81,7 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
             })}
           </ul>
 
+          {/* Nav Actions */}
           <div className="nav-actions">
             {quoteItemsCount > 0 && (
               <button 
@@ -99,15 +114,18 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
         </div>
       </header>
 
+      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
         <div className="drawer-overlay" onClick={() => setMobileMenuOpen(false)} />
       )}
       <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-drawer-header">
           <div className="brand-logo">
-            <div className="brand-logo-icon" style={{ width: '36px', height: '36px' }}>
-              <Zap size={20} fill="#D99A2B" />
-            </div>
+            <img
+              src="./samu-logo.png"
+              alt="Samu Electricals Logo"
+              style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
+            />
             <div className="brand-title" style={{ fontSize: '1.2rem' }}>{businessInfo.name}</div>
           </div>
           <button className="mobile-menu-toggle" onClick={() => setMobileMenuOpen(false)}>
