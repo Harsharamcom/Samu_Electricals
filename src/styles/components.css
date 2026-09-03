@@ -917,14 +917,17 @@
   background-color: var(--color-primary);
   color: #FFFFFF;
   border-radius: var(--radius-lg);
-  padding: 3.5rem 2.5rem;
+  padding: 3rem 2.25rem;
   box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .enquiry-grid {
   display: grid;
   grid-template-columns: 5fr 7fr;
-  gap: 3.5rem;
+  gap: 3rem;
   align-items: start;
 }
 
@@ -932,6 +935,7 @@
   color: #FFFFFF;
   font-size: 2.1rem;
   margin-bottom: 1rem;
+  word-break: break-word;
 }
 
 .enquiry-info-sub {
@@ -939,6 +943,7 @@
   font-size: 1.05rem;
   margin-bottom: 2rem;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 .enquiry-highlights {
@@ -974,14 +979,17 @@
 .enquiry-highlight-text p {
   color: #94A3B8;
   font-size: 0.85rem;
+  word-break: break-word;
 }
 
 .enquiry-form-card {
   background-color: var(--color-bg-white);
   color: var(--color-dark-charcoal);
   border-radius: var(--radius-md);
-  padding: 2rem;
+  padding: 1.75rem;
   box-shadow: var(--shadow-md);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .form-grid {
@@ -1015,6 +1023,7 @@
   background-color: var(--color-bg-warm);
   color: var(--color-dark-charcoal);
   transition: border-color var(--transition-fast);
+  box-sizing: border-box;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -1055,6 +1064,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+  word-break: break-word;
 }
 
 .contact-card-icon {
@@ -1079,6 +1089,7 @@
   font-size: 0.95rem;
   color: var(--color-dark-charcoal);
   font-weight: 500;
+  word-break: break-word;
 }
 
 .map-container-box {
@@ -1090,6 +1101,7 @@
   min-height: 420px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .map-placeholder-header {
@@ -1226,28 +1238,33 @@
   width: 100%;
   background-color: var(--color-primary-dark);
   border-top: 2px solid var(--color-accent);
-  padding: 0.65rem 1rem;
+  padding: 0.5rem 0.5rem;
   z-index: 999;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
 }
 
 .floating-mobile-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.2fr;
-  gap: 0.6rem;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: 0.4rem;
+  width: 100%;
 }
 
 .floating-mobile-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.6rem 0.5rem;
+  gap: 0.35rem;
+  padding: 0.6rem 0.35rem;
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  font-size: 0.775rem;
   font-weight: 700;
   text-decoration: none;
   color: #FFFFFF;
+  white-space: nowrap;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .floating-mobile-btn.call {
@@ -1387,11 +1404,20 @@
   }
 
   .enquiry-section {
-    padding: 2rem 1.25rem;
+    padding: 1.75rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .enquiry-info-title {
+    font-size: 1.5rem;
+  }
+
+  .enquiry-info-sub {
+    font-size: 0.925rem;
   }
 
   .enquiry-form-card {
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
   }
 
   .form-grid {
@@ -1400,6 +1426,19 @@
 
   .form-group.full-width {
     grid-column: span 1;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-card-item {
+    padding: 1rem;
+  }
+
+  .map-container-box {
+    min-height: 350px;
   }
 
   .footer-grid {
@@ -1417,7 +1456,7 @@
 
 @media (max-width: 520px) {
   .brand-subtitle {
-    display: none; /* Hide subtitle on small mobile so logo & title stay clean on 1 line */
+    display: none;
   }
 
   .brand-title {
@@ -1434,7 +1473,7 @@
   }
 
   .nav-quote-btn .quote-btn-text {
-    display: none; /* Icon & count badge only on small mobile */
+    display: none;
   }
 
   .hero-headline {
@@ -1448,14 +1487,29 @@
   .hero-image {
     height: 280px;
   }
+
+  .enquiry-section {
+    padding: 1.5rem 0.85rem;
+  }
 }
 
 @media (max-width: 400px) {
   .navbar-cta-btn {
-    display: none; /* Hide top CTA on tiny screens; sticky bottom CTA handles enquiry */
+    display: none;
   }
 
   .navbar-inner {
-    padding: 0 0.5rem;
+    padding: 0 0.4rem;
+  }
+
+  .floating-mobile-btn {
+    font-size: 0.725rem;
+    padding: 0.55rem 0.2rem;
+    gap: 0.2rem;
+  }
+
+  .floating-mobile-btn svg {
+    width: 14px;
+    height: 14px;
   }
 }

@@ -59,7 +59,6 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit quotation to Owner's Gmail via FormSubmit API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -70,7 +69,6 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
     const targetEmail = businessInfo.ownerGmail || businessInfo.email.primary;
 
     try {
-      // Send form payload to owner's Gmail using FormSubmit AJAX service
       const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
         method: "POST",
         headers: {
@@ -108,7 +106,6 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
       }
     } catch (err) {
       console.warn("FormSubmit AJAX attempt:", err);
-      // Fallback local state set
       setSubmittedEntry({
         id: `SE-QUOTE-${Date.now().toString().slice(-6)}`,
         timestamp: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
@@ -120,7 +117,6 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
     }
   };
 
-  // Direct Gmail Compose Link Generator (opens Gmail web app directly to harsharam273@gmail.com)
   const handleGmailDirectSend = () => {
     if (!validate()) return;
 
@@ -139,11 +135,9 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
       `Sent via Samu Electricals Web Form`
     );
 
-    // Open Gmail web compose directly
     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${body}`, '_blank');
   };
 
-  // WhatsApp Direct Message
   const handleWhatsAppEnquiry = () => {
     if (!validate()) return;
 
@@ -160,7 +154,7 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
   };
 
   return (
-    <section id="enquiry" className="section" style={{ padding: '0 1.25rem' }}>
+    <section id="enquiry" className="section">
       <div className="container">
         <div className="enquiry-section">
           <div className="enquiry-grid">
@@ -176,7 +170,7 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
               </h2>
 
               <p className="enquiry-info-sub">
-                Submit your requirement below. All enquiry details are transmitted <strong>directly to the store owner's Gmail inbox ({businessInfo.ownerGmail})</strong>. No customer details are shown on the website.
+                Submit your requirement below. All enquiry details are transmitted <strong>directly to the store owner's Gmail inbox</strong> (<span style={{ wordBreak: 'break-all' }}>{businessInfo.ownerGmail}</span>). No customer details are shown on the website.
               </p>
 
               <div className="enquiry-highlights">
@@ -185,8 +179,8 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
                     <Mail size={18} color="#EA4335" />
                   </div>
                   <div className="enquiry-highlight-text">
-                    <h4>Direct Gmail Delivery ({businessInfo.ownerGmail})</h4>
-                    <p>Enquiry notifications are delivered immediately to the manager's Gmail inbox for fast response.</p>
+                    <h4>Direct Gmail Delivery</h4>
+                    <p style={{ wordBreak: 'break-all' }}>Notifications sent immediately to {businessInfo.ownerGmail}</p>
                   </div>
                 </div>
 
@@ -196,7 +190,7 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
                   </div>
                   <div className="enquiry-highlight-text">
                     <h4>100% Confidential &amp; Private</h4>
-                    <p>Your contact details and order quantities are never published or exposed on the web application.</p>
+                    <p>Your contact details and order quantities are never published on the web application.</p>
                   </div>
                 </div>
 
@@ -206,63 +200,63 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
                   </div>
                   <div className="enquiry-highlight-text">
                     <h4>Retail &amp; Bulk Contractor Quotes</h4>
-                    <p>Get personalized price estimates for house construction, renovations, or commercial projects.</p>
+                    <p>Get personalized price estimates for house construction or commercial projects.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Private Enquiry Form */}
+            {/* Right Column: Private Form */}
             <div className="enquiry-form-card">
               {submittedEntry ? (
-                <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                  <div style={{ width: '60px', height: '60px', backgroundColor: 'var(--color-success-bg)', color: 'var(--color-success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem auto' }}>
-                    <CheckCircle2 size={36} />
+                <div style={{ textAlign: 'center', padding: '1rem 0.5rem' }}>
+                  <div style={{ width: '54px', height: '54px', backgroundColor: 'var(--color-success-bg)', color: 'var(--color-success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
+                    <CheckCircle2 size={32} />
                   </div>
                   
-                  <h3 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
                     Quotation Sent to Owner Gmail!
                   </h3>
                   
-                  <p style={{ fontSize: '0.95rem', color: 'var(--color-slate)', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-                    Thank you, <strong>{submittedEntry.name}</strong>. Your quotation enquiry for <em>"{submittedEntry.requirement}"</em> has been routed directly to <strong>{businessInfo.ownerGmail}</strong>.
+                  <p style={{ fontSize: '0.9rem', color: 'var(--color-slate)', marginBottom: '1.25rem', lineHeight: '1.5' }}>
+                    Thank you, <strong>{submittedEntry.name}</strong>. Your quotation enquiry for <em>"{submittedEntry.requirement}"</em> has been routed directly to <strong style={{ wordBreak: 'break-all' }}>{businessInfo.ownerGmail}</strong>.
                   </p>
 
-                  <div style={{ backgroundColor: '#FEF2F2', padding: '1rem', borderRadius: '8px', border: '1px solid #FECACA', marginBottom: '1.5rem', textAlign: 'left', fontSize: '0.85rem', color: '#991B1B' }}>
+                  <div style={{ backgroundColor: '#FEF2F2', padding: '0.85rem', borderRadius: '8px', border: '1px solid #FECACA', marginBottom: '1.25rem', textAlign: 'left', fontSize: '0.8rem', color: '#991B1B' }}>
                     <strong>📌 First-Time Gmail Activation Note:</strong><br />
                     If this is the first submission to <em>{businessInfo.ownerGmail}</em>, FormSubmit sends a 1-click confirmation link to your inbox. Once confirmed, all future enquiries arrive automatically in your Gmail inbox!
                   </div>
 
-                  <div style={{ backgroundColor: 'var(--color-bg-warm)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--color-light-slate)', marginBottom: '1.5rem', textAlign: 'left' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', color: 'var(--color-primary)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                      <Mail size={16} color="#EA4335" />
+                  <div style={{ backgroundColor: 'var(--color-bg-warm)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--color-light-slate)', marginBottom: '1.25rem', textAlign: 'left' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.85rem' }}>
+                      <Mail size={15} color="#EA4335" />
                       <span>Sent Details Summary:</span>
                     </div>
-                    <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--color-dark-charcoal)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                    <ul style={{ listStyle: 'none', fontSize: '0.8rem', color: 'var(--color-dark-charcoal)', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
                       <li><strong>Customer:</strong> {submittedEntry.name} ({submittedEntry.phone})</li>
                       <li><strong>Requirement:</strong> {submittedEntry.requirement}</li>
                       <li><strong>Preferred Brand:</strong> {submittedEntry.brand}</li>
                       <li><strong>Quantity:</strong> {submittedEntry.quantity || 'N/A'}</li>
-                      <li><strong>Destination Gmail:</strong> {businessInfo.ownerGmail}</li>
+                      <li style={{ wordBreak: 'break-all' }}><strong>Destination Gmail:</strong> {businessInfo.ownerGmail}</li>
                     </ul>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                     <button
                       onClick={handleGmailDirectSend}
-                      className="btn"
+                      className="btn btn-sm"
                       style={{ backgroundColor: '#EA4335', color: '#FFFFFF' }}
                     >
-                      <Mail size={16} />
-                      <span>Open &amp; Send via Gmail</span>
+                      <Mail size={15} />
+                      <span>Open in Gmail</span>
                     </button>
 
                     <button
                       onClick={() => exportSingleQuotationToExcel(submittedEntry)}
                       className="btn btn-outline btn-sm"
                     >
-                      <Download size={15} />
-                      <span>Download Excel Copy (.xlsx)</span>
+                      <Download size={14} />
+                      <span>Excel Copy</span>
                     </button>
 
                     <button
@@ -286,12 +280,12 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                    <h3 style={{ fontSize: '1.25rem', color: 'var(--color-primary)', margin: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1.2rem', color: 'var(--color-primary)', margin: 0 }}>
                       Product Quotation Form
                     </h3>
-                    <span style={{ fontSize: '0.75rem', backgroundColor: '#FEF2F2', color: '#DC2626', border: '1px solid #FCA5A5', padding: '0.2rem 0.55rem', borderRadius: '4px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <Mail size={13} color="#EA4335" />
+                    <span style={{ fontSize: '0.725rem', backgroundColor: '#FEF2F2', color: '#DC2626', border: '1px solid #FCA5A5', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.3rem', wordBreak: 'break-all' }}>
+                      <Mail size={12} color="#EA4335" />
                       Routes to {businessInfo.ownerGmail}
                     </span>
                   </div>
@@ -394,31 +388,31 @@ export const ProductEnquiry = ({ selectedProductForEnquiry, selectedServiceForEn
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-                    <button type="submit" className="btn btn-primary" style={{ flex: 1.2 }} disabled={isSubmitting}>
-                      {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                  <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
+                    <button type="submit" className="btn btn-primary" style={{ flex: '1 1 100%' }} disabled={isSubmitting}>
+                      {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
                       <span>{isSubmitting ? 'Sending...' : 'Send Quotation to Gmail'}</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={handleGmailDirectSend}
-                      className="btn"
+                      className="btn btn-sm"
                       style={{ backgroundColor: '#EA4335', color: '#FFFFFF', flex: 1 }}
                       title="Open & Compose in Gmail app"
                     >
-                      <Mail size={18} />
-                      <span>Open in Gmail</span>
+                      <Mail size={16} />
+                      <span>Open Gmail</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={handleWhatsAppEnquiry}
-                      className="btn"
+                      className="btn btn-sm"
                       style={{ backgroundColor: '#25D366', color: '#FFFFFF', flex: 1 }}
                       title="Direct WhatsApp Enquiry"
                     >
-                      <MessageSquare size={18} />
+                      <MessageSquare size={16} />
                       <span>WhatsApp</span>
                     </button>
                   </div>
