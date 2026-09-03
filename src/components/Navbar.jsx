@@ -40,30 +40,24 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
     <>
       <header className={`navbar-sticky ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-inner">
-          {/* Logo with User Uploaded Official Samu Emblem */}
+          {/* Logo with Responsive Sizing */}
           <a href="#home" className="brand-logo" onClick={(e) => handleNavClick(e, '#home')}>
             <img
               src="./samu-logo.png"
               alt="Samu Electricals Official Logo"
-              style={{
-                height: '52px',
-                width: 'auto',
-                objectFit: 'contain',
-                borderRadius: '8px',
-                filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.15))'
-              }}
+              className="navbar-brand-logo-img"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = "./samu-logo.svg";
               }}
             />
-            <div>
+            <div className="brand-text-box">
               <div className="brand-title">{businessInfo.name}</div>
               <div className="brand-subtitle">Multi-Brand Electrical Supplier</div>
             </div>
           </a>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav Links */}
           <ul className="desktop-nav">
             {navLinks.map((link) => {
               const isActive = activeSection === link.name.toLowerCase();
@@ -81,23 +75,23 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
             })}
           </ul>
 
-          {/* Nav Actions */}
+          {/* Nav Action Buttons */}
           <div className="nav-actions">
             {quoteItemsCount > 0 && (
               <button 
                 onClick={onOpenQuoteDrawer} 
-                className="btn btn-sm btn-outline"
+                className="btn btn-sm btn-outline nav-quote-btn"
                 title="View Selected Quote Items"
               >
                 <ShoppingBag size={16} />
-                <span>Quote List</span>
+                <span className="quote-btn-text">Quote List</span>
                 <span className="quote-count-badge">{quoteItemsCount}</span>
               </button>
             )}
 
             <a 
               href="#enquiry" 
-              className="btn btn-primary"
+              className="btn btn-primary navbar-cta-btn"
               onClick={(e) => handleNavClick(e, '#enquiry')}
             >
               Get a Quote
@@ -108,13 +102,13 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="drawer-overlay" onClick={() => setMobileMenuOpen(false)} />
       )}
@@ -124,9 +118,9 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
             <img
               src="./samu-logo.png"
               alt="Samu Electricals Logo"
-              style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
             />
-            <div className="brand-title" style={{ fontSize: '1.2rem' }}>{businessInfo.name}</div>
+            <div className="brand-title" style={{ fontSize: '1.15rem' }}>{businessInfo.name}</div>
           </div>
           <button className="mobile-menu-toggle" onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
@@ -152,7 +146,7 @@ export const Navbar = ({ activeSection, quoteItemsCount, onOpenQuoteDrawer }) =>
           <a
             href="#enquiry"
             className="btn btn-primary"
-            style={{ width: '100%' }}
+            style={{ width: '100%', textAlign: 'center' }}
             onClick={(e) => handleNavClick(e, '#enquiry')}
           >
             Get a Quote
